@@ -1,0 +1,8 @@
+<ul class="launches">
+  <a *ngFor="let launch of launches"
+  routerLink="/launchDetail/{{launch.id}}">
+    <h3>
+      {{ launch.name }}
+    </h3>
+  </a>
+</ul>

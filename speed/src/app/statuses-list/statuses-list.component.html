@@ -1,0 +1,9 @@
+<h3>Estado de lanzamientos</h3>
+<div>
+  <a *ngFor="let status of statuses"
+    routerLink="/statusFilter/{{status.id}}">
+    <div>
+      <h4>{{status.name}}</h4>
+    </div>
+  </a>
+</div>
