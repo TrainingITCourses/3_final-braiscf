@@ -1,0 +1,2 @@
+<app-counter [counter]="{length:(launches$ | async).length, message:'Lanzamientos'}"></app-counter>
+<app-statuses-list [statuses]="statuses$ | async"></app-statuses-list>
