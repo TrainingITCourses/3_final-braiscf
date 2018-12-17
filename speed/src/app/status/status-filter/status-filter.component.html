@@ -1,5 +1,5 @@
 <app-order (orderAsc)="orderByDateAsc()" (orderDesc)="orderByDateDesc()"></app-order>
-<app-message [message]="(status$ | async)"></app-message>
+<app-message [message]="statusName"></app-message>
 <span *ngIf="filteredLaunches$">
   <app-counter [counter]="{length:(filteredLaunches$ | async).length, message:'Lanzamientos'}"></app-counter>
   <app-launches-list [launches]="filteredLaunches$ | async"></app-launches-list>

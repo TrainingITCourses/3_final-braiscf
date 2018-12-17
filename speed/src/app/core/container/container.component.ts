@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./container.component.css']
 })
 export class ContainerComponent implements OnInit {
-  public isHandset$: Observable<boolean>;
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {

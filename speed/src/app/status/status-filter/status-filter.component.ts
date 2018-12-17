@@ -12,7 +12,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class StatusFilterComponent implements OnInit {
   public filteredLaunches$: Observable<any>;
-  public status$: Observable<any>;
+  public status;
+  public statusName;
   public id;
   constructor(private route: ActivatedRoute, private store: Store<State>) { }
 
@@ -20,7 +21,15 @@ export class StatusFilterComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('id');
 
     this.filteredLaunches$ = this.getLaunchFilteredByState(this.id);
-    this.status$ = this.getStatusById(this.id);
+
+    this.store.select('status').subscribe(statusState => {
+      const id = this.route.snapshot.params['id'];
+      this.status = statusState.statuses.filter(
+        l => l.id.toString() === id
+      )[0];
+    });
+
+    this.statusName = this.status.name;
   }
 
   getLaunchFilteredByState = (statusId): Observable<any[]> =>
@@ -31,13 +40,6 @@ export class StatusFilterComponent implements OnInit {
         launchesState.launches.filter(
         l => l.status === statusId)))
 
-  getStatusById = (statusId): Observable<any[]> =>
-  this.store.select('status')
-    .pipe(
-      map(
-        statusState =>
-        statusState.statuses.filter(
-        s => s.id === statusId)))      
 
   orderByDateAsc() {
     this.filteredLaunches$ = this.store.select('launch')

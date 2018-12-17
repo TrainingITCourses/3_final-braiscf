@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
      .select('launch').pipe(
        map(
          launchesState =>
-         launchesState.launches));   
+         launchesState.launches));
   }
 
 }
